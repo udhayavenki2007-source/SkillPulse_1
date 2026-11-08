@@ -47,11 +47,15 @@ app.use((err, req, res, next) => {
   });
 });
 
-// Start Express Server
-app.listen(PORT, () => {
-  console.log(`==================================================`);
-  console.log(`  INTERVIEWIQ AI - BACKEND ENGINE RUNNING         `);
-  console.log(`  Port: http://localhost:${PORT}                  `);
-  console.log(`  API Health: http://localhost:${PORT}/api/health `);
-  console.log(`==================================================`);
-});
+// Start Express Server (local only; Vercel uses the exported app)
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`==================================================`);
+    console.log(`  INTERVIEWIQ AI - BACKEND ENGINE RUNNING         `);
+    console.log(`  Port: http://localhost:${PORT}                  `);
+    console.log(`  API Health: http://localhost:${PORT}/api/health `);
+    console.log(`==================================================`);
+  });
+}
+
+module.exports = app;
